@@ -97,7 +97,7 @@ app.directive('ngTypeahead', function($log, $timeout) {
         }
       };
     },
-    template: "<input ng-model=\"search\" ng-keydown=\"$onKeyDown($event)\" ng-model-options=\"{ debounce: delay }\" ng-blur=\"$onBlur()\" class=\"rm-typeahead-input\"/>\n<div class=\"rm-typeahead-wrapper\">\n  <ul class=\"rm-typeahead-list\" ng-show=\"showSuggestions\">\n    <li class=\"rm-typeahead-list-item\" ng-repeat=\"item in suggestions = (data | filter:search | startsWith:search:startFilter |limitTo: limit | highlight:search)\" ng-mousedown=\"$onSelect(item)\" ng-class=\"{'active': $index == index}\" ng-bind-html=\"item.html\"></li>\n    </ul>\n</div>\n<div ng-transclude>"
+    template: "<input ng-model=\"search\" ng-keydown=\"$onKeyDown($event)\" ng-model-options=\"{ debounce: delay }\" ng-blur=\"$onBlur()\" class=\"ng-typeahead-input\"/>\n<div class=\"ng-typeahead-wrapper\">\n  <ul class=\"ng-typeahead-list\" ng-show=\"showSuggestions\">\n    <li class=\"ng-typeahead-list-item\" ng-repeat=\"item in suggestions = (data | filter:search | startsWith:search:startFilter |limitTo: limit | highlight:search)\" ng-mousedown=\"$onSelect(item)\" ng-class=\"{'active': $index == index}\" ng-bind-html=\"item.html\"></li>\n    </ul>\n</div>\n<div ng-transclude>"
   };
 });
 
@@ -133,7 +133,7 @@ app.filter("highlight", function($sce) {
         exp = new RegExp(words, "gi");
         normalInput = input.label.slice(search.length);
         if (words.length) {
-          highlightedInput = input.label.slice(0, search.length).replace(exp, "<span class=\"rm-typeahead-highlight\">$1</span>");
+          highlightedInput = input.label.slice(0, search.length).replace(exp, "<span class=\"ng-typeahead-highlight\">$1</span>");
         }
         return input.html = $sce.trustAsHtml(highlightedInput + normalInput);
       }
