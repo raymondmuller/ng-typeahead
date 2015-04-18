@@ -1,0 +1,44 @@
+$primary-color: #4DB6AC;
+$list-border-color: grey;
+
+.ng-typeahead-wrapper, .ng-typeahead-input {
+  width: 100%; }
+
+.ng-typeahead-wrapper {
+  position: relative;
+}
+
+.ng-typeahead-list { 
+  background: white;
+  border-top: #4DB6AC 2px solid;
+  border-right: 1px solid grey;
+  border-left: 1px solid grey;
+  border-bottom: 1px solid grey;
+  list-style: none;
+  margin-top: 0;
+  padding: 0;
+  &:before {
+      border-top: 5px solid #4DB6AC;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      width: 0;
+      height: 0;
+      content: "";
+      display: block;
+      position: absolute;
+      left: 10px;
+    }
+}
+
+.ng-typeahead-list-item {
+  padding: 6px 15px;
+}
+
+.ng-typeahead-list-item.active {
+  background: #4DB6AC;
+  color: white;
+}
+
+.ng-typeahead-highlight {
+  color: #00695C;
+}
