@@ -6,14 +6,14 @@ app.directive 'ngTypeahead', ($log, $timeout) ->
     restrict: 'E'
     scope: {
       data: '='
-      limit: '=?'
-      threshold: '=?'
-      onSelect: '=?'
-      onType: "=?"
-      onBlur: "=?"
       delay: "=?"
       forceSelection: "=?"
+      limit: '=?'
       startFilter: "=?"
+      threshold: '=?'
+      onBlur: "=?"
+      onSelect: '=?'
+      onType: "=?"
     }
 
     require: "?ngModel"
@@ -31,13 +31,12 @@ app.directive 'ngTypeahead', ($log, $timeout) ->
       itemSelected = false
       scope.index = 0
 
-      scope.startFilter = true if !scope.startFilter
-
       scope.delay = 0 if !scope.delay 
 
-      if !scope.limit then scope.limit = Infinity
-      if !scope.threshold then scope.threshold = 0
-      if !scope.forceSelection then scope.forceSelection = false
+      if scope.startFilter is undefined then scope.startFilter = true
+      if scope.limit is undefined then scope.limit = Infinity
+      if scope.threshold is undefined then scope.threshold = 0
+      if scope.forceSelection is undefined then scope.forceSelection = false
 
       scope.$watch "search", (v) ->
         scope.index = 0
@@ -45,7 +44,7 @@ app.directive 'ngTypeahead', ($log, $timeout) ->
         return if v is selectedLabel
         itemSelected = false
         if v isnt undefined
-          scope.onType(scope.search) if scope.onType# execute on-type function
+          scope.onType(scope.search) if scope.onType # execute on-type function
           scope.showSuggestions = scope.suggestions.length && scope.search && scope.search.length > scope.threshold
 
       scope.$onBlur = ->
