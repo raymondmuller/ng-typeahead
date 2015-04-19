@@ -40,6 +40,9 @@ app.directive('ngTypeahead', function($log, $timeout) {
       if (!scope.limit) {
         scope.limit = Infinity;
       }
+      if (!scope.threshold) {
+        scope.threshold = 0;
+      }
       if (!scope.forceSelection) {
         scope.forceSelection = false;
       }
@@ -51,7 +54,9 @@ app.directive('ngTypeahead', function($log, $timeout) {
         }
         itemSelected = false;
         if (!!v) {
-          scope.onType(scope.search);
+          if (scope.onType) {
+            scope.onType(scope.search);
+          }
           return scope.showSuggestions = scope.suggestions.length && scope.search && scope.search.length > scope.threshold;
         }
       });

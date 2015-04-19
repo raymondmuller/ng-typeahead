@@ -36,6 +36,7 @@ app.directive 'ngTypeahead', ($log, $timeout) ->
       scope.delay = 0 if !scope.delay 
 
       if !scope.limit then scope.limit = Infinity
+      if !scope.threshold then scope.threshold = 0
       if !scope.forceSelection then scope.forceSelection = false
 
       scope.$watch "search", (v) ->
@@ -44,7 +45,7 @@ app.directive 'ngTypeahead', ($log, $timeout) ->
         return if v is selectedLabel
         itemSelected = false
         if !!v
-          scope.onType(scope.search) # execute on-type function
+          scope.onType(scope.search) if scope.onType# execute on-type function
           scope.showSuggestions = scope.suggestions.length && scope.search && scope.search.length > scope.threshold
 
       scope.$onBlur = ->
