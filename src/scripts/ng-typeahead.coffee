@@ -44,12 +44,12 @@ app.directive 'ngTypeahead', ($log, $timeout) ->
         ngModel.$setViewValue v
         return if v is selectedLabel
         itemSelected = false
-        if !!v
+        if v isnt undefined
           scope.onType(scope.search) if scope.onType# execute on-type function
           scope.showSuggestions = scope.suggestions.length && scope.search && scope.search.length > scope.threshold
 
       scope.$onBlur = ->
-        if !itemSelected then scope.search = selectedLabel
+        if !itemSelected and scope.forceSelection then scope.search = selectedLabel
         scope.showSuggestions = false
         
       scope.$onSelect = (item) ->
@@ -57,7 +57,7 @@ app.directive 'ngTypeahead', ($log, $timeout) ->
         selectedLabel = item.label
         scope.search = item.label
         itemSelected = true
-        scope.onSelect(item)
+        scope.onSelect(item) if scope.onSelect
         scope.showSuggestions = false
         $timeout ->
           selecting = false

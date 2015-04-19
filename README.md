@@ -15,7 +15,7 @@
    `npm install ng-typeahead`  
 
 # Demo and Documentation
-in the making...
+[Demo page](http://raymondmuller.github.io/ng-typeahead)
 
 # Simple usage
 include the directive and its styles to your project and in your html
@@ -25,8 +25,8 @@ include the directive and its styles to your project and in your html
 at least include an ng-model and a data object with the following structure
 
 `{
-	label: "one" 
-	value: "1"
+	"label": "one", 
+	"value": 1
 }`
 
 The label is what is shown to the user.

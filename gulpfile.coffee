@@ -48,7 +48,6 @@ concatenateStyles = ->
   streamqueue({objectMode: true}, compileStyles())
     .pipe(concat("ng-typeahead.css"))
 
-
 # Compile Directive
 gulp.task "scripts",   ->
   gulp.start("minified", "normal")
