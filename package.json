@@ -1,7 +1,7 @@
 {
   "name": "ng-typeahead",
   "description": "A typeahead directive for AngularJS 1.3",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Raymond Muller <raymond.muller.1989@gmail.com>",
   "devDependencies": {
     "coffee-script": "~1.8.0",

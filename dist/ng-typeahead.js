@@ -7,14 +7,14 @@ app.directive('ngTypeahead', function($log, $timeout) {
     restrict: 'E',
     scope: {
       data: '=',
-      limit: '=?',
-      threshold: '=?',
-      onSelect: '=?',
-      onType: "=?",
-      onBlur: "=?",
       delay: "=?",
       forceSelection: "=?",
-      startFilter: "=?"
+      limit: '=?',
+      startFilter: "=?",
+      threshold: '=?',
+      onBlur: "=?",
+      onSelect: '=?',
+      onType: "=?"
     },
     require: "?ngModel",
     transclude: true,
@@ -31,19 +31,19 @@ app.directive('ngTypeahead', function($log, $timeout) {
       selecting = void 0;
       itemSelected = false;
       scope.index = 0;
-      if (!scope.startFilter) {
-        scope.startFilter = true;
-      }
       if (!scope.delay) {
         scope.delay = 0;
       }
-      if (!scope.limit) {
+      if (scope.startFilter === void 0) {
+        scope.startFilter = true;
+      }
+      if (scope.limit === void 0) {
         scope.limit = Infinity;
       }
-      if (!scope.threshold) {
+      if (scope.threshold === void 0) {
         scope.threshold = 0;
       }
-      if (!scope.forceSelection) {
+      if (scope.forceSelection === void 0) {
         scope.forceSelection = false;
       }
       scope.$watch("search", function(v) {
