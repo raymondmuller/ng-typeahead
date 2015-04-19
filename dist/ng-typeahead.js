@@ -53,7 +53,7 @@ app.directive('ngTypeahead', function($log, $timeout) {
           return;
         }
         itemSelected = false;
-        if (!!v) {
+        if (v !== void 0) {
           if (scope.onType) {
             scope.onType(scope.search);
           }
@@ -61,7 +61,7 @@ app.directive('ngTypeahead', function($log, $timeout) {
         }
       });
       scope.$onBlur = function() {
-        if (!itemSelected) {
+        if (!itemSelected && scope.forceSelection) {
           scope.search = selectedLabel;
         }
         return scope.showSuggestions = false;
@@ -71,7 +71,9 @@ app.directive('ngTypeahead', function($log, $timeout) {
         selectedLabel = item.label;
         scope.search = item.label;
         itemSelected = true;
-        scope.onSelect(item);
+        if (scope.onSelect) {
+          scope.onSelect(item);
+        }
         scope.showSuggestions = false;
         return $timeout(function() {
           return selecting = false;

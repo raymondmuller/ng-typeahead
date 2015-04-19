@@ -17,6 +17,9 @@ $list-border-color: grey;
   list-style: none;
   margin-top: 0;
   padding: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 999;
   &:before {
       border-top: 5px solid #4DB6AC;
       border-left: 5px solid transparent;
