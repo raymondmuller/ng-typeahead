@@ -31,7 +31,9 @@ app.directive 'ngTypeahead', ($log, $timeout) ->
       itemSelected = false
       scope.index = 0
 
-      scope.delay = 0 if !scope.delay 
+      scope.delay = 0 if !scope.delay
+
+      scope.placeholder = attrs.placeholder
 
       if scope.startFilter is undefined then scope.startFilter = true
       if scope.limit is undefined then scope.limit = Infinity
@@ -75,7 +77,7 @@ app.directive 'ngTypeahead', ($log, $timeout) ->
             scope.showSuggestions = false    
       
     template: """
-                <input ng-model="search" ng-keydown="$onKeyDown($event)" ng-model-options="{ debounce: delay }" ng-blur="$onBlur()" class="ng-typeahead-input"/>
+                <input ng-model="search" placeholder="{{placeholder}}" ng-keydown="$onKeyDown($event)" ng-model-options="{ debounce: delay }" ng-blur="$onBlur()" class="ng-typeahead-input"/>
                 <div class="ng-typeahead-wrapper">
                   <ul class="ng-typeahead-list" ng-show="showSuggestions">
                     <li class="ng-typeahead-list-item" ng-repeat="item in suggestions = (data | filter:search | startsWith:search:startFilter |limitTo: limit | highlight:search)" ng-mousedown="$onSelect(item)" ng-class="{'active': $index == index}" ng-bind-html="item.html"></li>
